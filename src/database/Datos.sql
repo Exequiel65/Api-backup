@@ -1,10 +1,22 @@
-USE banco_saint_patrick_db;
+INSERT INTO banks
+VALUES(default,"Saint Patrick", "Córdoba", "9 de Julio 700", 20658973694),(default,"Saint Patrick", "Buenos Aieres", "San Martín 400", 65321654583), (default,"Banco Galicia", "Córdoba", "9 de Julio 710", 10362545267);
+
 
 INSERT INTO accounts
-VALUE(default, 40519873964);
-
-INSERT INTO users
-VALUE(default, "Marcos", "Britos", 40519873, "Exequiel65", 123456, "mail@mail.com", 1);
+VALUES(default, 56897123694, 40000, 1),(default, 4569873612, 0, 2);
 
 INSERT INTO cards
-VALUE(default, 5564123698764562, "Marcos E. Britos", 000, "2030/06/01", "COD", 1234, 1)
+VALUES(default, 5365669900001111, "Matias Gonzales",2026-06-01, 000, 1234, 1),(default, 00001111222233334444, "Susana Rodriguez",2026-06-01, 000, 1234, 2);
+
+INSERT INTO types
+VALUES(default, "Transferencia", null), (default, "Pago", null);
+
+INSERT INTO transactions
+VALUES(23654869, "Pago de servicios", 40000, 2, 2, 1, 1, 2);
+
+
+INSERT INTO movements
+VALUES(default, 40000, 0, "Transferencia por pago de servicios", 1, 23654869);
+
+INSERT INTO users
+VALUES(default, "Matias", "Gonzales", 23654789, "Matias123", "123456", "matiasGonzales@gmail.com", 1), (default, "Susana", "Rodriguez", 25654321, "Susana123", "123456", "susanaRodriguez@gmail.com", 2);
