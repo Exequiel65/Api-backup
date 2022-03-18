@@ -1,9 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+const db = require('../database/models')
 
 const controller = {
 	index: (req, res) => {
-		res.send('Conectado')
+		db.User.findAll()
+		.then((users)=>{
+			res.json({
+				users
+			})
+		})
 	},
 
 };

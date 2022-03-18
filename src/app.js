@@ -3,23 +3,32 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
-const path = require('path');
-
+const session = require('express-session')
+const isSession = require('./middlewares/isSession');
 // ************ express() - (don't touch) ************
 const app = express();
 
-// ************ Middlewares - (don't touch) ************
-app.use(express.static(path.join(__dirname, '../public')));  // Necesario para los archivos estáticos en el folder /public
+// ************ Middlewares - (don't touch) ************  // Necesario para los archivos estáticos en el folder /public
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(session({
+    secret: "authSecret",
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { maxAge: 600000 }
+}))
 // ************ WRITE YOUR CODE FROM HERE ************
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/main'); // Rutas main
+const authRouter = require('./routes/auth'); // Rutas main
 
 
+app.use('/auth', authRouter);
+
+app.use(isSession)
 app.use('/', mainRouter);
 
 
@@ -38,7 +47,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
 // ************ exports app - dont'touch ************
