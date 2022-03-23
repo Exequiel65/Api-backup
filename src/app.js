@@ -24,12 +24,14 @@ app.use(session({
 // ************ Route System require and use() ************
 const mainRouter = require('./routes/main'); // Rutas main
 const authRouter = require('./routes/auth'); // Rutas main
+const accountRouter = require('./routes/account'); // Rutas main
 
 
 app.use('/auth', authRouter);
 
-app.use(isSession)
+// app.use(isSession)
 app.use('/', mainRouter);
+// app.use('/account', accountRouter);
 
 
 
@@ -47,7 +49,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.json('error');
+  res.json(err);
 });
 
 // ************ exports app - dont'touch ************
